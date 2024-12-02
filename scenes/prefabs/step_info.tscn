@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvdyt3m3ajf6l"]
+
+[ext_resource type="Script" path="res://scenes/prefabs/step_info.gd" id="1_w1bqc"]
+
+[node name="HBox_StepInfo" type="HBoxContainer"]
+script = ExtResource("1_w1bqc")
+
+[node name="Label_Time" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Time"
+horizontal_alignment = 1
+
+[node name="VSep_Left" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Label_Step" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Step"
+horizontal_alignment = 1
+
+[node name="VSep_Right" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Label_Type" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Type
+"
+horizontal_alignment = 1

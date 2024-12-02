@@ -5,4 +5,5 @@ func _ready():
 		add_item(ritual)
 
 func _on_item_selected(index:int):
-	signals.emit_signal("ritual_selected", global.data.keys()[index-2])
+	global.ritual = global.data.keys()[index-2]
+	signals.emit_signal("ritual_selected")

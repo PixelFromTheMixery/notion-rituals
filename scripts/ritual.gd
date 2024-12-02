@@ -6,5 +6,5 @@ extends VBoxContainer
 func _ready():
 	signals.connect("ritual_selected", start_ritual)
 
-func start_ritual(ritual: String):
-	label_step.text = global.data[ritual].keys()[0]
+func start_ritual():
+	label_step.text = global.data[global.ritual].keys()[0]

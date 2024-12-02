@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1uo1ai6pg4lb"]
+[gd_scene load_steps=5 format=3 uid="uid://d1uo1ai6pg4lb"]
 
 [ext_resource type="Script" path="res://scripts/autoloads/init.gd" id="1_tqxst"]
 [ext_resource type="Script" path="res://scripts/Option_Rituals.gd" id="2_aohl7"]
 [ext_resource type="Script" path="res://scripts/ritual.gd" id="2_gon6n"]
+[ext_resource type="Script" path="res://scenes/Panel_Ritual.gd" id="3_ls2pg"]
 
 [node name="Control_Base" type="Control"]
 layout_mode = 3
@@ -58,6 +59,7 @@ layout_mode = 2
 [node name="Panel_Ritual" type="Panel" parent="VBox_Base"]
 layout_mode = 2
 size_flags_vertical = 3
+script = ExtResource("3_ls2pg")
 
 [node name="VBox_List" type="VBoxContainer" parent="VBox_Base/Panel_Ritual"]
 visible = false

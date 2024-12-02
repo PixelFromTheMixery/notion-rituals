@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1uo1ai6pg4lb"]
+[gd_scene load_steps=4 format=3 uid="uid://d1uo1ai6pg4lb"]
 
-[ext_resource type="Script" path="res://scripts/init.gd" id="1_bgujj"]
+[ext_resource type="Script" path="res://scripts/autoloads/init.gd" id="1_tqxst"]
+[ext_resource type="Script" path="res://scripts/Option_Rituals.gd" id="2_aohl7"]
+[ext_resource type="Script" path="res://scripts/ritual.gd" id="2_gon6n"]
 
 [node name="Control_Base" type="Control"]
 layout_mode = 3
@@ -9,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_bgujj")
+script = ExtResource("1_tqxst")
 
 [node name="VBox_Base" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -39,6 +41,15 @@ layout_mode = 2
 [node name="Option_Rituals" type="OptionButton" parent="VBox_Base/HBox_TopBar"]
 layout_mode = 2
 size_flags_horizontal = 3
+alignment = 1
+item_count = 2
+selected = 0
+popup/item_0/text = "Select a ritual"
+popup/item_0/id = 0
+popup/item_1/text = ""
+popup/item_1/id = 1
+popup/item_1/separator = true
+script = ExtResource("2_aohl7")
 
 [node name="Control_Buffer" type="Control" parent="VBox_Base"]
 custom_minimum_size = Vector2(0, 5)
@@ -48,7 +59,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBox_Ritual" type="VBoxContainer" parent="VBox_Base/Panel_Ritual"]
+[node name="VBox_List" type="VBoxContainer" parent="VBox_Base/Panel_Ritual"]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -60,10 +72,55 @@ offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Control_Top" type="Control" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
-custom_minimum_size = Vector2(0, 30)
+[node name="Control Top" type="Control" parent="VBox_Base/Panel_Ritual/VBox_List"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label_Title" type="Label" parent="VBox_Base/Panel_Ritual/VBox_List"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Sequence"
+horizontal_alignment = 1
+
+[node name="HSep" type="HSeparator" parent="VBox_Base/Panel_Ritual/VBox_List"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBox_Base/Panel_Ritual/VBox_List"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBox_Base/Panel_Ritual/VBox_List/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Button_Start" type="Button" parent="VBox_Base/Panel_Ritual/VBox_List"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Control Bottom" type="Control" parent="VBox_Base/Panel_Ritual/VBox_List"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="VBox_Ritual" type="VBoxContainer" parent="VBox_Base/Panel_Ritual"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_gon6n")
+
+[node name="Control_Top" type="Control" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 
 [node name="Label_Step" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
 layout_mode = 2
@@ -85,29 +142,28 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TextEdit" type="TextEdit" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
+[node name="Tedit_Entry" type="TextEdit" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
+placeholder_text = "Answer the question here"
 
 [node name="HBox_Controls" type="HBoxContainer" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="Button_Back" type="Button" parent="VBox_Base/Panel_Ritual/VBox_Ritual/HBox_Controls"]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Back"
 
 [node name="Button_Skip" type="Button" parent="VBox_Base/Panel_Ritual/VBox_Ritual/HBox_Controls"]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Skip"
 
 [node name="Button_Done" type="Button" parent="VBox_Base/Panel_Ritual/VBox_Ritual/HBox_Controls"]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Done
@@ -116,3 +172,20 @@ text = "Done
 [node name="Control_Bot" type="Control" parent="VBox_Base/Panel_Ritual/VBox_Ritual"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Label_Start" type="Label" parent="VBox_Base/Panel_Ritual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Please select a Ritual from the dropdown above to get started"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="item_selected" from="VBox_Base/HBox_TopBar/Option_Rituals" to="VBox_Base/HBox_TopBar/Option_Rituals" method="_on_item_selected"]

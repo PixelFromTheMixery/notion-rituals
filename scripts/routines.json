@@ -39,6 +39,12 @@
 		"What can I do to make today great?": {
 			"type": "rich_text",
 			"time": 3
-		},
+		}
+	},
+	"Empty Routine": {
+		"Test": {
+			"type": "checkbox",
+			"time": 1
+		}
 	}
 }

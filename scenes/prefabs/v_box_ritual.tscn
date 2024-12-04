@@ -1,0 +1,88 @@
+[gd_scene load_steps=2 format=3 uid="uid://dee8blm7ckwnx"]
+
+[ext_resource type="Script" path="res://scripts/VBox_Ritual.gd" id="1_b6t7d"]
+
+[node name="VBox_Ritual" type="VBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b6t7d")
+
+[node name="Control_Top" type="Control" parent="."]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label_Step" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Title"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Control_Middle" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label_Timer" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "5:00"
+horizontal_alignment = 1
+
+[node name="Control_Controls" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Tedit_Entry" type="TextEdit" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 6.0
+placeholder_text = "Answer the question here"
+
+[node name="HBox_Controls" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="Button_Back" type="Button" parent="HBox_Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Back"
+
+[node name="Button_Skip" type="Button" parent="HBox_Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Skip"
+
+[node name="Button_Done" type="Button" parent="HBox_Controls"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Done
+"
+
+[node name="Button_Pause" type="Button" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+toggle_mode = true
+text = "Pause"
+
+[node name="Control_Bot" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Timer_OneSec" type="Timer" parent="."]
+
+[node name="Timer_Step" type="Timer" parent="."]
+
+[connection signal="pressed" from="HBox_Controls/Button_Back" to="." method="_on_button_back_pressed"]
+[connection signal="pressed" from="HBox_Controls/Button_Skip" to="." method="_on_button_skip_pressed"]
+[connection signal="pressed" from="HBox_Controls/Button_Done" to="." method="_on_button_done_pressed"]
+[connection signal="toggled" from="Button_Pause" to="." method="_on_button_pause_toggled"]
+[connection signal="timeout" from="Timer_OneSec" to="." method="_on_timer_one_sec_timeout"]
+[connection signal="timeout" from="Timer_Step" to="." method="_on_timer_step_timeout"]

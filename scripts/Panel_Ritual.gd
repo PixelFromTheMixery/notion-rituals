@@ -2,6 +2,7 @@ extends Panel
 
 @onready var no_ritual_warning: Label = $Label_Start
 @onready var sequence_screen: VBoxContainer = $VBox_List
+@onready var sequence_title: Label = $VBox_List/Label_Title
 @onready var sequence_list:  VBoxContainer = $VBox_List/Scroll_Sequence/VBox_Sequence
 @onready var sequence_info: Label = $VBox_List/Label_SequenceInfo
 @onready var ritual_screen: VBoxContainer = $VBox_Ritual
@@ -11,6 +12,8 @@ func _ready():
 	signals.connect("ritual_selected", calculate_sequence)
 
 func calculate_sequence(ritual: Array):
+	sequence_title.text = "Review 
+	" + global.selected
 	var sequence_count = str(ritual.size())+" steps will take "
 	
 	var step_time_total = 0

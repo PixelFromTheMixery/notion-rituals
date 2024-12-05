@@ -1,0 +1,92 @@
+{
+	"1. Morning Ritual": {
+		"id": "14d62907-d7c2-80ec-8fb0-dede3a59cdb9",
+		"steps": [
+			[
+				"Brush Teeth",
+				3
+			],
+			[
+				"Deodorant",
+				1
+			],
+			[
+				"Toner",
+				1
+			],
+			[
+				"Brush Hair",
+				2
+			],
+			[
+				"Style Hair",
+				3
+			],
+			[
+				"Meditation",
+				5
+			],
+			[
+				"Moisturiser",
+				3
+			],
+			[
+				"Heart Rate Reading",
+				2
+			],
+			[
+				"What can I do to make today great?",
+				3
+			],
+			[
+				"How am I feeling right now and why?",
+				15
+			]
+		]
+	},
+	"2. Evening Ritual": {
+		"id": "15362907-d7c2-80fe-81cf-de79db5c6cd0",
+		"steps": [
+			[
+				"Brush Teeth",
+				3
+			],
+			[
+				"Deodorant",
+				1
+			],
+			[
+				"Toner",
+				1
+			],
+			[
+				"Brush Hair",
+				2
+			],
+			[
+				"Style Hair",
+				3
+			],
+			[
+				"Meditation",
+				5
+			],
+			[
+				"Moisturiser",
+				3
+			],
+			[
+				"Heart Rate Reading",
+				2
+			],
+			[
+				"What can I do to make today great?",
+				3
+			],
+			[
+				"How am I feeling right now and why?",
+				15
+			]
+		]
+	}
+}

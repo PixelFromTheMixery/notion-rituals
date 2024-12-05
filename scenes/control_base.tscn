@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d1uo1ai6pg4lb"]
+[gd_scene load_steps=6 format=3 uid="uid://d1uo1ai6pg4lb"]
 
 [ext_resource type="Script" path="res://scripts/Option_Rituals.gd" id="2_aohl7"]
 [ext_resource type="Script" path="res://scripts/Panel_Ritual.gd" id="3_4i7o4"]
 [ext_resource type="Script" path="res://scripts/Sequence/VBox_Sequence.gd" id="4_27ay3"]
+[ext_resource type="Script" path="res://scripts/api.gd" id="5_8l6oi"]
 [ext_resource type="PackedScene" uid="uid://dee8blm7ckwnx" path="res://scenes/prefabs/v_box_ritual.tscn" id="5_gr8rl"]
 
 [node name="Control_Base" type="Control"]
@@ -30,13 +31,15 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
-item_count = 2
+item_count = 3
 selected = 0
 popup/item_0/text = "Select a ritual"
 popup/item_0/id = 0
-popup/item_1/text = ""
+popup/item_1/text = "Refresh Ritual List"
 popup/item_1/id = 1
-popup/item_1/separator = true
+popup/item_2/text = ""
+popup/item_2/id = 2
+popup/item_2/separator = true
 script = ExtResource("2_aohl7")
 
 [node name="Panel_Ritual" type="Panel" parent="VBox_Base"]
@@ -64,7 +67,7 @@ layout_mode = 2
 [node name="Label_Title" type="Label" parent="VBox_Base/Panel_Ritual/VBox_List"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Sequence"
+text = "Confirm {title}"
 horizontal_alignment = 1
 
 [node name="HSep" type="HSeparator" parent="VBox_Base/Panel_Ritual/VBox_List"]
@@ -148,6 +151,9 @@ text = "Please select a Ritual from the dropdown above to get started"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+script = ExtResource("5_8l6oi")
 
 [connection signal="item_selected" from="VBox_Base/Option_Rituals" to="VBox_Base/Option_Rituals" method="_on_item_selected"]
 [connection signal="item_selected" from="VBox_Base/Option_Rituals" to="VBox_Base/Panel_Ritual" method="_on_option_rituals_item_selected"]

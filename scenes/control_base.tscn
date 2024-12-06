@@ -47,8 +47,22 @@ layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("3_4i7o4")
 
+[node name="Label_Start" type="Label" parent="VBox_Base/Panel_Ritual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_right = -40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 40
+text = "Please select a Ritual from the dropdown above to get started"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
 [node name="VBox_List" type="VBoxContainer" parent="VBox_Base/Panel_Ritual"]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -137,20 +151,90 @@ layout_mode = 2
 visible = false
 layout_mode = 1
 
-[node name="Label_Start" type="Label" parent="VBox_Base/Panel_Ritual"]
+[node name="VBox_Results" type="VBoxContainer" parent="VBox_Base/Panel_Ritual"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 40.0
-offset_right = -40.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Control_Top" type="Control" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Label_Title" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+layout_mode = 2
 theme_override_font_sizes/font_size = 40
-text = "Please select a Ritual from the dropdown above to get started"
+text = "Confirm {title}"
 horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+
+[node name="HSep" type="HSeparator" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+layout_mode = 2
+
+[node name="HBox_Detail" type="HBoxContainer" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+layout_mode = 2
+
+[node name="Label_Time" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Results/HBox_Detail"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Time"
+horizontal_alignment = 1
+
+[node name="VSep_Left" type="VSeparator" parent="VBox_Base/Panel_Ritual/VBox_Results/HBox_Detail"]
+layout_mode = 2
+
+[node name="Label_Step" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Results/HBox_Detail"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Step"
+horizontal_alignment = 1
+
+[node name="VSep_Right" type="VSeparator" parent="VBox_Base/Panel_Ritual/VBox_Results/HBox_Detail"]
+layout_mode = 2
+
+[node name="Label_Type" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Results/HBox_Detail"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Action"
+horizontal_alignment = 1
+
+[node name="HSep2" type="HSeparator" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+layout_mode = 2
+
+[node name="Scroll_Sequence" type="ScrollContainer" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBox_Sequence" type="VBoxContainer" parent="VBox_Base/Panel_Ritual/VBox_Results/Scroll_Sequence"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("4_27ay3")
+
+[node name="Label_SequenceInfo" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Time"
+horizontal_alignment = 1
+
+[node name="Control_Mid" type="Control" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="Button_Start" type="Button" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Start"
+
+[node name="Control_Bottom" type="Control" parent="VBox_Base/Panel_Ritual/VBox_Results"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 script = ExtResource("5_8l6oi")
@@ -160,3 +244,6 @@ script = ExtResource("5_8l6oi")
 [connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual" method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual/VBox_List/Scroll_Sequence/VBox_Sequence" method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual/VBox_Ritual" method="_on_button_start_pressed"]
+[connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_Results/Button_Start" to="VBox_Base/Panel_Ritual" method="_on_button_start_pressed"]
+[connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_Results/Button_Start" to="VBox_Base/Panel_Ritual/VBox_Ritual" method="_on_button_start_pressed"]
+[connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_Results/Button_Start" to="VBox_Base/Panel_Ritual/VBox_Results/Scroll_Sequence/VBox_Sequence" method="_on_button_start_pressed"]

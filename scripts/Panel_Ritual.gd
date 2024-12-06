@@ -6,10 +6,11 @@ extends Panel
 @onready var sequence_list:  VBoxContainer = $VBox_List/Scroll_Sequence/VBox_Sequence
 @onready var sequence_info: Label = $VBox_List/Label_SequenceInfo
 @onready var ritual_screen: VBoxContainer = $VBox_Ritual
-
+@onready var results_screen: VBoxContainer = $VBox_Results
 
 func _ready():
 	signals.connect("ritual_selected", calculate_sequence)
+	signals.connect("submit_results", show_results)
 
 func calculate_sequence(ritual: Array):
 	sequence_title.text = "Review 
@@ -32,3 +33,13 @@ func _on_option_rituals_item_selected(index:int):
 		ritual_screen.hide()
 		no_ritual_warning.hide()
 		sequence_screen.show()
+
+func show_results():
+	ritual_screen.hide()
+	results_screen.show()
+
+func restart():
+	results_screen.hide()
+	global.selected = ""
+	global.ritual = []
+	no_ritual_warning.show()	

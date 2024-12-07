@@ -1,18 +1,30 @@
 extends HTTPRequest
 
 var request_headers: PackedStringArray
+var safety_net: String
+var json_result
+var api_key
 
 func _ready():
 	signals.connect("fetch_databases", fetch_json)
 	signals.connect("submit_result", send_entry)
+	signals.connect("api_set", read_api)
+	read_api()
 
-	var api_key = OS.get_environment("API_KEY") if OS.has_environment("API_KEY") else global.env["API_KEY"]
-
-	request_headers = PackedStringArray([
-		"Authorization: Bearer %s" % api_key,
-		"Content-Type: application/json",
-		"Notion-Version: 2022-06-28",
+func read_api():
+	var json = JSON.new()
+	var json_str = global.load_from_file("user://settings.json")
+	if json_str != null:
+		var error = json.parse(json_str)
+		if error == OK:
+			request_headers = PackedStringArray([
+				"Authorization: Bearer %s" % json.data['api_key'],
+				"Content-Type: application/json",
+				"Notion-Version: 2022-06-28",
 	])
+		else:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_str, " at line ", json.get_error_line())
+
 
 func fetch_json():
 	request_completed.connect(database_list)
@@ -42,6 +54,7 @@ func database_list(_result, _response_code, _headers, body):
 
 func send_entry(steps: Array):
 	request_completed.connect(entry_response)
+	safety_net = JSON.stringify(steps)
 	var props = {}
 	for i in range(steps.size()):
 		props[""+steps[i][0]] = {'rich_text':
@@ -57,11 +70,9 @@ func send_entry(steps: Array):
 		"properties": props
 	}
 	var json = JSON.stringify(data)
-	
 	request(
 		"https://api.notion.com/v1/pages", request_headers, HTTPClient.METHOD_POST, json
 	)
 
-func entry_response(_result, _response_code, _headers, body):
-	var json = JSON.parse_string(body.get_string_from_utf8())
-	print(json)
+func entry_response(_result, response_code, _headers, _body):
+	signals.reset.emit(response_code, safety_net)

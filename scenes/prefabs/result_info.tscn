@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1gx52bjgnmc0"]
+
+[sub_resource type="GDScript" id="GDScript_alhbb"]
+script/source = "extends HBoxContainer
+
+class_name result_info
+
+@onready var time = $Label_Time
+@onready var title = $Label_Step"
+
+[node name="HBox_StepInfo" type="HBoxContainer"]
+script = SubResource("GDScript_alhbb")
+
+[node name="Label_Time" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "Time"
+horizontal_alignment = 1
+
+[node name="VSep_Left" type="VSeparator" parent="."]
+layout_mode = 2
+
+[node name="Label_Step" type="Label" parent="."]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Step"
+horizontal_alignment = 1
+autowrap_mode = 3

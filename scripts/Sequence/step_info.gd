@@ -11,9 +11,6 @@ var id: int
 
 signal step_action(step: int, action: String)
 
-func _on_button_skip_pressed():
-	step_action.emit(id, "skip")
-
 func _on_button_down_pressed():
 	step_action.emit(id, "down")
 

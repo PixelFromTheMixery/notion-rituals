@@ -45,6 +45,7 @@ layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
 placeholder_text = "Answer the question here"
+wrap_mode = 1
 
 [node name="HBox_Controls" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 60)

@@ -18,6 +18,7 @@ func _on_button_start_pressed():
 	
 
 func ritual_step():
+	write.text = ""
 	if step_count == 0:
 		back.disabled = true
 	else:
@@ -55,8 +56,10 @@ func _on_button_back_pressed():
 	ritual_step()	
 
 func _on_button_skip_pressed():
+	result.append(
+			[str(global.ritual[step_count][1])+" - " + global.ritual[step_count][0], "Skipped"]
+		)
 	step_count += 1
-	result[step_count] = "Skipped"
 	ritual_step()
 
 func _on_button_done_pressed():

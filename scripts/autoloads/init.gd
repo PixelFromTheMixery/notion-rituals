@@ -9,10 +9,6 @@ var env: Dictionary
 func _ready():
 	signals.connect("refresh_rituals", load_rituals)
 
-	global.env = load_env("res://.env")  # Or a path outside the project for extra security
-	if "API_KEY" in env:
-		print("API Key:", env["API_KEY"])
-
 	load_rituals()
 
 func load_rituals():
@@ -31,7 +27,9 @@ func load_from_file(filepath: String):
 		var content = file.get_as_text()
 		return content
 	else: 
-		print("File not found")
+		print("File %s not found" % filepath)
+		if "settings" in filepath:
+			signals.api_missing.emit()
 
 func save_to_json(file_path: String, data: Dictionary):
 	var file = FileAccess.open(file_path, FileAccess.WRITE)

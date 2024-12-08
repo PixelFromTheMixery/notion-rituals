@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dee8blm7ckwnx"]
+[gd_scene load_steps=3 format=3 uid="uid://dee8blm7ckwnx"]
 
 [ext_resource type="Script" path="res://scripts/VBox_Ritual.gd" id="1_b6t7d"]
+[ext_resource type="AudioStream" uid="uid://c0p5x2v6am0qf" path="res://sounds/notification-sound-3-262896.mp3" id="2_nhdoa"]
 
 [node name="VBox_Ritual" type="VBoxContainer"]
 anchors_preset = 15
@@ -36,16 +37,16 @@ theme_override_font_sizes/font_size = 40
 text = "5:00"
 horizontal_alignment = 1
 
-[node name="Control_Controls" type="Control" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="Tedit_Entry" type="TextEdit" parent="."]
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-size_flags_vertical = 3
 size_flags_stretch_ratio = 6.0
 placeholder_text = "Answer the question here"
 wrap_mode = 1
+
+[node name="Control_Controls" type="Control" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="HBox_Controls" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 60)
@@ -80,6 +81,9 @@ size_flags_vertical = 3
 [node name="Timer_OneSec" type="Timer" parent="."]
 
 [node name="Timer_Step" type="Timer" parent="."]
+
+[node name="Audio_TimedOut" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_nhdoa")
 
 [connection signal="pressed" from="HBox_Controls/Button_Back" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="HBox_Controls/Button_Skip" to="." method="_on_button_skip_pressed"]

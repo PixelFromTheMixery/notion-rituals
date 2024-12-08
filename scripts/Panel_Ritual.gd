@@ -7,7 +7,7 @@ extends Panel
 @onready var ritual_screen: VBoxContainer = $VBox_Ritual
 @onready var results_screen: VBoxContainer = $VBox_Result
 @onready var results_title: Label = $VBox_Result/Label_Title
-@onready var results_result: Label = $VBox_Result/Label_Warning
+@onready var results_result: TextEdit = $VBox_Result/TEdit_Warning
 @onready var reset_button: Button = $VBox_Result/Button_Finish
 
 func _ready():
@@ -24,7 +24,7 @@ func calculate_sequence(ritual: Array):
 	
 	var step_time_total = 0
 	for step in ritual:
-		step_time_total += step[1]
+		step_time_total += step[2]
 	var sequence_time = str(step_time_total) + " minutes"
 
 	sequence_info.text = sequence_count + sequence_time
@@ -47,11 +47,11 @@ func show_results(_result: Array):
 	" + global.selected
 
 func reset_ready(response_code: int, results: String):
-	results_result.show()
 	reset_button.disabled = false
 	if response_code == 200:
 		results_result.text = "It's online. You're good to go"
 	else: 
+		results_result.show()
 		results_result.text = "Something went wrong, have the results here for manual input" + results
 
 func _on_button_finish_pressed():

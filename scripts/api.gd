@@ -2,8 +2,6 @@ extends HTTPRequest
 
 var request_headers: PackedStringArray
 var safety_net: String
-var json_result
-var api_key
 
 func _ready():
 	signals.connect("fetch_databases", fetch_json)
@@ -44,13 +42,14 @@ func database_list(_result, _response_code, _headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	var rituals: Dictionary = {}
 	for database in json['results']:
-		var ritual_name = database['title'][0]['text']['content']
+		var ritual_name = database['title'][0]['text']['content'].substr(3)
 		rituals[ritual_name] = {"id": database['id'], "steps": []}
 		for key in database['properties'].keys():
 			if " - " in key:
 				var unpacked_column = key.split(' - ')
-				rituals[ritual_name]["steps"].append([unpacked_column[1], int(unpacked_column[0])])
-	global.save_to_json("res://scripts/rituals.json", rituals)
+				rituals[ritual_name]["steps"].append([unpacked_column[0], unpacked_column[2], int(unpacked_column[1])])
+		rituals[ritual_name]["steps"].sort()
+	global.save_to_json("user://rituals.json", rituals)
 
 func send_entry(steps: Array):
 	request_completed.connect(entry_response)
@@ -75,4 +74,6 @@ func send_entry(steps: Array):
 	)
 
 func entry_response(_result, response_code, _headers, _body):
+	if response_code != 200:
+		print("issue here")
 	signals.reset.emit(response_code, safety_net)

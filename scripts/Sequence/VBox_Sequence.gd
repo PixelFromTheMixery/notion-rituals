@@ -16,8 +16,8 @@ func generate_sequence(ritual: Array):
 		var instance = step_object.instantiate()
 		add_child(instance)
 		instance.id = i
-		instance.title.text = ritual[i][0]
-		instance.time.text = str(ritual[i][1])
+		instance.title.text = ritual[i][1]
+		instance.time.text = str(ritual[i][2])
 		instance.connect("step_action", adjust_sequence)
 		if i == 0:
 			instance.up.disabled = true

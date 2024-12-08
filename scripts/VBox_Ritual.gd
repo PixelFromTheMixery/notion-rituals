@@ -7,6 +7,7 @@ extends VBoxContainer
 @onready var write: TextEdit = $Tedit_Entry
 @onready var pause: Button = $Button_Pause
 @onready var back: Button = $HBox_Controls/Button_Back
+@onready var notify: AudioStreamPlayer = $Audio_TimedOut
 
 var step_count: int
 var journal: bool
@@ -18,6 +19,7 @@ func _on_button_start_pressed():
 	
 
 func ritual_step():
+	step_timer.stop()
 	write.text = ""
 	if step_count == 0:
 		back.disabled = true
@@ -26,18 +28,18 @@ func ritual_step():
 	if step_count+1 > global.ritual.size():
 		signals.submit_result.emit(result)
 	else:	
-		if global.ritual[step_count][0].contains("?"):
+		if global.ritual[step_count][1].contains("?"):
 			journal = true
 			write.show()
 		else:
 			journal = false
 			write.hide()
 
-		step_timer.wait_time = global.ritual[step_count][1] * 60
+		step_timer.wait_time = global.ritual[step_count][2] * 60
 		step_timer.start()
 		one_sec_timer.start()
 
-		label_step.text = global.ritual[step_count][0]
+		label_step.text = global.ritual[step_count][1]
 		label_timer.text = translate_time(int(step_timer.time_left))
 
 func _on_timer_one_sec_timeout():
@@ -49,6 +51,8 @@ func translate_time(time_left: int):
 	return "%02d:%02d" % [minutes, seconds]
 
 func _on_timer_step_timeout():
+	notify.play()
+	step_timer.stop()
 	one_sec_timer.stop()
 
 func _on_button_back_pressed():
@@ -57,7 +61,12 @@ func _on_button_back_pressed():
 
 func _on_button_skip_pressed():
 	result.append(
-			[str(global.ritual[step_count][1])+" - " + global.ritual[step_count][0], "Skipped"]
+			[
+				global.ritual[step_count][0] + ' - ' + 
+				str(global.ritual[step_count][2]) + " - " + 
+				global.ritual[step_count][1],
+				"Skipped"
+			]
 		)
 	step_count += 1
 	ritual_step()
@@ -65,16 +74,24 @@ func _on_button_skip_pressed():
 func _on_button_done_pressed():
 	if journal:
 		result.append(
-			[str(global.ritual[step_count][1])+" - " + global.ritual[step_count][0], write.text]
+			[
+				global.ritual[step_count][0] + ' - ' + 
+				str(global.ritual[step_count][2]) + " - " + 
+				global.ritual[step_count][1],
+				write.text
+			]
 		)
 	else:
 		var time_left = translate_time(
-			global.ritual[step_count][1] * 60 - 
+			global.ritual[step_count][2] * 60 - 
 			int(step_timer.time_left)
 		)
 		result.append(
 			[
-				str(global.ritual[step_count][1])+" - " + global.ritual[step_count][0], time_left
+				global.ritual[step_count][0] + ' - ' + 
+				str(global.ritual[step_count][2]) + " - " + 
+				global.ritual[step_count][1],
+				time_left
 			]
 		)
 	step_count += 1

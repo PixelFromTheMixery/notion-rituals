@@ -6,7 +6,8 @@ script/source = "extends HBoxContainer
 class_name result_info
 
 @onready var time = $Label_Time
-@onready var title = $Label_Step"
+@onready var title = $Label_Step
+"
 
 [node name="HBox_StepInfo" type="HBoxContainer"]
 script = SubResource("GDScript_alhbb")

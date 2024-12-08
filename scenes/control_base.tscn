@@ -202,16 +202,11 @@ custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Label_Warning" type="Label" parent="VBox_Base/Panel_Ritual/VBox_Result"]
+[node name="TEdit_Warning" type="TextEdit" parent="VBox_Base/Panel_Ritual/VBox_Result"]
 visible = false
-custom_minimum_size = Vector2(50, 0)
+custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 32
-text = "It's been sent online. You're good to go"
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 3
+wrap_mode = 1
 
 [node name="Button_Finish" type="Button" parent="VBox_Base/Panel_Ritual/VBox_Result"]
 custom_minimum_size = Vector2(0, 60)

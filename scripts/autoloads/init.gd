@@ -13,7 +13,7 @@ func _ready():
 
 func load_rituals():
 	var json = JSON.new()
-	var json_str = load_from_file("res://scripts/rituals.json")
+	var json_str = load_from_file("user://rituals.json")
 	if json_str != null:
 		var error = json.parse(json_str)
 		if error == OK:

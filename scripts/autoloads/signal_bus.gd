@@ -1,7 +1,7 @@
 extends Node
 
 # new ritual selection
-signal ritual_selected (ritual: Array, start: bool)
+signal ritual_selected (ritual: Array)
 signal ritual_set(ritual: Array)
 
 signal fetch_databases()

@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://scripts/Panel_Ritual.gd" id="3_4i7o4"]
 [ext_resource type="Script" path="res://scripts/Sequence/VBox_Sequence.gd" id="4_27ay3"]
 [ext_resource type="Script" path="res://scripts/api_database.gd" id="5_8l6oi"]
-[ext_resource type="PackedScene" uid="uid://dee8blm7ckwnx" path="res://scenes/prefabs/control_ritual.tscn" id="5_gr8rl"]
+[ext_resource type="PackedScene" uid="uid://dee8blm7ckwnx" path="res://scenes/prefabs/v_box_ritual.tscn" id="5_gr8rl"]
 [ext_resource type="Script" path="res://scripts/api_submit.gd" id="6_6s8nx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_50ppi"]
@@ -160,7 +160,7 @@ text = "Start"
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Control_Ritual" parent="VBox_Base/Panel_Ritual" instance=ExtResource("5_gr8rl")]
+[node name="VBox_Ritual" parent="VBox_Base/Panel_Ritual" instance=ExtResource("5_gr8rl")]
 visible = false
 layout_mode = 1
 
@@ -241,7 +241,7 @@ anchor_bottom = 0.5
 offset_left = 20.0
 offset_top = -335.0
 offset_right = -20.0
-offset_bottom = -168.0
+offset_bottom = -222.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_5k7lt")
@@ -267,17 +267,12 @@ placeholder_text = "Enter API key here"
 layout_mode = 2
 text = "Confirm"
 
-[node name="Button_ Cancel" type="Button" parent="Panel_API/VBox_API"]
-layout_mode = 2
-text = "Cancel"
-
 [connection signal="item_selected" from="VBox_Base/Option_Rituals" to="VBox_Base/Option_Rituals" method="_on_item_selected"]
 [connection signal="item_selected" from="VBox_Base/Option_Rituals" to="VBox_Base/Panel_Ritual" method="_on_option_rituals_item_selected"]
 [connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual" method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual/VBox_List/Scroll_Sequence/VBox_Sequence" method="_on_button_start_pressed"]
-[connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual/Control_Ritual" method="_on_button_start_pressed"]
+[connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_List/Button_Start" to="VBox_Base/Panel_Ritual/VBox_Ritual" method="_on_button_start_pressed"]
 [connection signal="pressed" from="VBox_Base/Panel_Ritual/VBox_Result/Button_Finish" to="VBox_Base/Panel_Ritual" method="_on_button_finish_pressed"]
 [connection signal="request_completed" from="HTTP_databases" to="VBox_Base/Panel_Ritual" method="_on_http_request_request_completed"]
 [connection signal="request_completed" from="HTTP_send entry" to="VBox_Base/Panel_Ritual" method="_on_http_request_request_completed"]
 [connection signal="pressed" from="Panel_API/VBox_API/Button_API" to="VBox_Base/Option_Rituals" method="_on_button_api_pressed"]
-[connection signal="pressed" from="Panel_API/VBox_API/Button_ Cancel" to="VBox_Base/Option_Rituals" method="_on_button__cancel_pressed"]

@@ -3,13 +3,33 @@ extends Node
 var base: Dictionary
 var selected: String
 var ritual: Array
+var id: int
 var env: Dictionary
+
+var request_headers: PackedStringArray
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	signals.connect("refresh_rituals", load_rituals)
+	signals.connect("api_set", read_api)
 
 	load_rituals()
+	read_api()
+
+func read_api():
+	var json = JSON.new()
+	var json_str = global.load_from_file("user://settings.json")
+	if json_str != null:
+		var error = json.parse(json_str)
+		if error == OK:
+			request_headers = PackedStringArray([
+				"Authorization: Bearer %s" % json.data['api_key'],
+				"Content-Type: application/json",
+				"Notion-Version: 2022-06-28",
+	])
+		else:
+			print("JSON Parse Error: ", json.get_error_message(), " in ", json_str, " at line ", json.get_error_line())
+
 
 func load_rituals():
 	var json = JSON.new()

@@ -1,38 +1,35 @@
 [gd_scene load_steps=3 format=3 uid="uid://dee8blm7ckwnx"]
 
-[ext_resource type="Script" path="res://scripts/VBox_Ritual.gd" id="1_b6t7d"]
-[ext_resource type="AudioStream" uid="uid://c0p5x2v6am0qf" path="res://sounds/notification-sound-3-262896.mp3" id="2_nhdoa"]
+[ext_resource type="Script" path="res://scripts/Control_Ritual.gd" id="1_p8728"]
+[ext_resource type="AudioStream" uid="uid://c0p5x2v6am0qf" path="res://sounds/notification-sound-3-262896.mp3" id="2_ffpn5"]
 
-[node name="VBox_Ritual" type="VBoxContainer"]
+[node name="Control_Ritual" type="Control"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_b6t7d")
-
-[node name="Control_Top" type="Control" parent="."]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
+script = ExtResource("1_p8728")
 
 [node name="Label_Step" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 200.0
+offset_right = 450.0
+offset_bottom = 255.0
 theme_override_font_sizes/font_size = 40
 text = "Title"
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="Control_Middle" type="Control" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="Label_Timer" type="Label" parent="."]
 layout_mode = 2
+offset_left = 10.0
+offset_top = 314.0
+offset_right = 450.0
+offset_bottom = 369.0
 theme_override_font_sizes/font_size = 40
 text = "5:00"
 horizontal_alignment = 1
@@ -40,17 +37,21 @@ horizontal_alignment = 1
 [node name="Tedit_Entry" type="TextEdit" parent="."]
 custom_minimum_size = Vector2(0, 300)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 373.0
+offset_right = 450.0
+offset_bottom = 673.0
 size_flags_stretch_ratio = 6.0
 placeholder_text = "Answer the question here"
 wrap_mode = 1
 
-[node name="Control_Controls" type="Control" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="HBox_Controls" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 677.0
+offset_right = 450.0
+offset_bottom = 737.0
 
 [node name="Button_Back" type="Button" parent="HBox_Controls"]
 layout_mode = 2
@@ -71,19 +72,19 @@ text = "Done
 [node name="Button_Pause" type="Button" parent="."]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
+offset_left = 10.0
+offset_top = 741.0
+offset_right = 450.0
+offset_bottom = 801.0
 toggle_mode = true
 text = "Pause"
-
-[node name="Control_Bot" type="Control" parent="."]
-layout_mode = 2
-size_flags_vertical = 3
 
 [node name="Timer_OneSec" type="Timer" parent="."]
 
 [node name="Timer_Step" type="Timer" parent="."]
 
 [node name="Audio_TimedOut" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_nhdoa")
+stream = ExtResource("2_ffpn5")
 
 [connection signal="pressed" from="HBox_Controls/Button_Back" to="." method="_on_button_back_pressed"]
 [connection signal="pressed" from="HBox_Controls/Button_Skip" to="." method="_on_button_skip_pressed"]

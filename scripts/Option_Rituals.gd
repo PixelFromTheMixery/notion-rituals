@@ -11,8 +11,8 @@ func _ready():
 func reload_menu():
 	while item_count > 4:
 		remove_item(4)
-	for ritual in global.base.keys():
-		add_item(ritual)
+	for i in range(len(global.base['rituals'])):
+		add_item(global.base['rituals'][i].keys()[0])
 
 func _on_item_selected(index:int):
 	if index == 0:
@@ -22,8 +22,10 @@ func _on_item_selected(index:int):
 	if index == 2:
 		api_panel.show()
 	elif index > 2:
-		global.selected = global.base.keys()[index-4]
-		signals.ritual_selected.emit(global.base[global.selected]['steps'])
+		global.id = index-4
+		global.selected = global.base['rituals'][global.id].keys()[0]
+		global.ritual = global.base['rituals'][global.id][global.selected]['steps']
+		signals.ritual_selected.emit(global.ritual)
 
 func _on_button_api_pressed():
 	api_panel.hide()
@@ -31,3 +33,6 @@ func _on_button_api_pressed():
 	global.save_to_json("user://settings.json", data)
 	signals.api_set.emit()
 	api_tedit.text = ""
+
+func _on_button__cancel_pressed():
+	api_panel.hide()

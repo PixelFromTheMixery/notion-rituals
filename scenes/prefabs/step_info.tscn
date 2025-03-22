@@ -23,14 +23,14 @@ horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="Button_Down" type="Button" parent="."]
-custom_minimum_size = Vector2(23, 0)
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-text = "D"
+text = "⬇"
 
 [node name="Button_Up" type="Button" parent="."]
-custom_minimum_size = Vector2(23, 0)
+custom_minimum_size = Vector2(35, 0)
 layout_mode = 2
-text = "U"
+text = "⬆"
 
 [connection signal="pressed" from="Button_Down" to="." method="_on_button_down_pressed"]
 [connection signal="pressed" from="Button_Up" to="." method="_on_button_up_pressed"]

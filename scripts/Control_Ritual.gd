@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends Control
 
 @onready var label_step: Label = $Label_Step
 @onready var label_timer: Label = $Label_Timer
@@ -15,9 +15,9 @@ var result: Array
 
 func _on_button_start_pressed():
 	step_count = 0
+	result = []
 	ritual_step()
 	
-
 func ritual_step():
 	step_timer.stop()
 	write.text = ""
